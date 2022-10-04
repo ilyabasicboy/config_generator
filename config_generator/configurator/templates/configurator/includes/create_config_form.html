@@ -1,0 +1,27 @@
+<form method="POST"
+      class="d-flex justify-content-center flex-column"
+      enctype="multipart/form-data"
+      action="{% url 'create_config' %}">
+    {% csrf_token %}
+    <h3 class="font-weight-bold">Задать конфигурацию</h3>
+    <fieldset class="mt-4">
+        {% if app %}
+            <input type="hidden" name="app" value="{{ app.id }}">
+        {% endif %}
+        {% for field in form.visible_fields %}
+            {{ field.type }}
+            <div class="{% if field.errors %}error{% endif %} form-group row">
+                <div class="col-5 font-weight-bold">
+                    <label for="id_{{ field.name }}">
+                        {{ field.label }}
+                    </label>
+                </div>
+                <div class="col-7 form-control-wrapper">
+                    {{ field }}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    </fieldset>
+    <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
+</form>

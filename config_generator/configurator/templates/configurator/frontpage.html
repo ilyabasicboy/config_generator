@@ -1,0 +1,48 @@
+{% extends "configurator/base.html" %}
+{% load configurator_tags %}
+{% block content %}
+    <div class="container">
+        <div class="row p-4 mt-2 d-flex align-items-start rounded border">
+            <div class="col d-flex justify-content-center flex-column">
+                {% if apps %}
+                    <h3>Список ваших приложений:</h3>
+                    <ul class="p-0 d-flex justify-content-center flex-column">
+                        {% for app in apps %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="#app_{{ app.id }}"
+                                        data-toggle="collapse"
+                                        role="button"
+                                        class="
+                                            text-dark d-flex
+                                            justify-content-between
+                                            align-items-center
+                                            text-decoration-none
+                                            pt-2 pb-2 pl-4 pr-4 btn
+                                            btn-light mt-1
+                                            font-weight-bold
+                                        ">
+                                            <span>{{ app.title }}</span>
+                                            <span class="oi oi-chevron-bottom"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div id="app_{{ app.id }}" class="collapse multi-collapse col">
+                                        {% include 'configurator/includes/app.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <h3>Список приложений пуст</h3>
+                {% endif %}
+            </div>
+            <div class="col">
+                <a class="btn btn-success" href="/create_app/">Создать приложение</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

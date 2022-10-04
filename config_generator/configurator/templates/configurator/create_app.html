@@ -1,0 +1,11 @@
+{% extends "configurator/base.html" %}
+{% load configurator_tags %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                {% show_create_app_form %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

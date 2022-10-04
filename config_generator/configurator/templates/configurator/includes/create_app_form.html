@@ -1,0 +1,27 @@
+<form method="POST"
+      class="d-flex justify-content-center flex-column"
+      enctype="multipart/form-data"
+      action="{% url 'create_app' %}">
+    {% csrf_token %}
+    <h3>Добавить приложение</h3>
+    <fieldset>
+        {% for field in form %}
+            <div class="form-group font-weight-bold p-2 mb-1 {% if field.errors %}border rounded border-danger{% endif %}">
+                <label for="id_{{ field.name }}" class="d-flex m-0 align-items-center justify-content-between">
+                    <div class="col-5 p-0">
+                        {{ field.label }}
+                    </div>
+                    <div class="col-7">
+                        {{ field }}
+                    </div>
+                </label>
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+    </fieldset>
+    <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
+</form>
+
+{% if success %}
+    {% include 'configurator/includes/create_app_success_modal.html' %}
+{% endif %}

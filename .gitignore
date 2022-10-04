@@ -1,0 +1,7 @@
+.idea
+config_generator/settings.py
+*.pyc
+*.sqlite3
+logfile*
+venv/*
+media/*

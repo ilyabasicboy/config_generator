@@ -1,0 +1,38 @@
+{% extends "configurator/base.html" %}
+{% block container %}
+    <div class="container-fluid">
+        <div class="container mt-5 d-flex align-items-center flex-column justify-content-center">
+            <div class="row mb-4">
+                <h2>Авторизация</h2>
+            </div>
+            <div class="row">
+                <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if auth_error %}
+                        <div class="row justify-content-center mb-3 text-danger">
+                            <strong class="mr-1">Ошибка авторизации:</strong>
+                            {{ auth_error }}
+                        </div>
+                    {% endif %}
+                    <div class="form-row align-items-center justify-content-center form-group">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="username" id="id_username" placeholder="Логин" required>
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center justify-content-center form-group">
+                        <div class="col-auto">
+                            <input type="password" class="form-control" name="password" id="id_password" placeholder="Пароль" required>
+                        </div>
+                    </div>
+                    <div class="form-row align-items-center justify-content-center form-group">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

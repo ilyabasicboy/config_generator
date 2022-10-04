@@ -1,0 +1,63 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    {% block css %}
+        <link href="{% static 'bootstrap/icons/open-iconic-bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" >
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                    <img src="/static/images/logo.png">
+                </a>
+            <div class="h3">
+                Конфигуратор
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="h4">
+                    <span class="font-weight-bold">Пользователь:</span> {{ request.user }}
+                </div>
+                <a class="font-weight-bold" href="{% url 'logout' %}">
+                    Выход
+                    <span class="oi oi-account-logout"></span>
+                </a>
+            {% else %}
+                <div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="/signup">Зарегистрироваться</a>
+                        </div>
+                        <div class="col">
+                            <a href="/signin">
+                                Войти
+                                <span class="oi oi-account-login"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+    {% block container %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'jquery/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/base.js' %}"></script>
+        <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    {% endblock %}
+</body>
+</html>
+

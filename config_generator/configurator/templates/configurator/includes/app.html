@@ -1,0 +1,52 @@
+{% load configurator_tags %}
+<div class="bg-light rounded mt-1">
+    <div class="container">
+        <div class="container p-4">
+            <div class="row mb-3 h5">
+                <div class="col font-weight-bold">
+                    Название:
+                </div>
+                <a href="{% url 'get_resources' %}?project={{ app.title }}" download="">resources</a>
+                <div class="col">
+                    {{ app.title }}
+                </div>
+            </div>
+            {% if app.icons %}
+                <div class="row mb-2">
+                    <div class="col font-weight-bold">
+                        Архив с иконками:
+                    </div>
+                    <div class="col">
+                        <a href="{{ app.icons.url }}" download="">
+                            <span class="oi oi-cloud-download"></span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if app.mask %}
+                <div class="row mb-2">
+                    <div class="col font-weight-bold">
+                        Архив с масками:
+                    </div>
+                    <div class="col">
+                        <a href="{{ app.mask.url }}" download="">
+                            <span class="oi oi-cloud-download"></span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="container p-4">
+            <div class="row">
+                <div class="col">
+                    {% if app.config %}
+                        <h3 class="font-weight-bold mb-3">Конфигурация:</h3>
+                        {% include 'configurator/includes/config.html' %}
+                    {% else %}
+                        {% show_create_config_form app=app %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

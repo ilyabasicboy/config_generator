@@ -1,0 +1,13 @@
+.mh-100vh {
+    min-height: 100vh;
+}
+
+.app__icon {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.app__logo {
+    max-width: 150px;
+    max-height: 150px;
+}

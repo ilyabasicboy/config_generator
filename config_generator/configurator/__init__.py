@@ -1,0 +1,1 @@
+default_app_config = 'config_generator.configurator.apps.ConfiguratorConfig'
