@@ -6,6 +6,8 @@ PROJECT_ROOT = os.path.join(BASE_DIR, 'config_generator')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, "static")]
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000000
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -26,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'config_generator.configurator'
+    'config_generator.configurator',
+    'config_generator.translations'
 ]
 
 MIDDLEWARE = [
@@ -45,7 +48,7 @@ ROOT_URLCONF = 'config_generator.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

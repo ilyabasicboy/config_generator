@@ -5,3 +5,7 @@ config_generator/settings.py
 logfile*
 venv/*
 media/*
+/media/
+/venv/
+/media/upload/default_resources/icons/
+/media/upload/default_resources/masks/

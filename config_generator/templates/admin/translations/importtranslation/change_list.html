@@ -1,0 +1,59 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n static %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+{% endblock %}
+
+
+{% block content %}
+	<form action="." method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <fieldset class="module aligned ">
+            <div class="form-row">
+                <label class="required">
+                    {{ form.language.label }}:
+                </label>
+                <div class="related-widget-wrapper">
+                    {{ form.language }}
+                    <a class="related-widget-wrapper-link add-related" id="add_id_language" href="/admin/translations/language/add/?_to_field=id&amp;_popup=1" title="Add another Language">
+                        <img src="/static/admin/img/icon-addlink.svg" alt="Add">
+                    </a>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <label class="required">
+                    {{ form.file.label }}:
+                </label>
+                <div class="related-widget-wrapper">
+                    {{ form.file }}
+                </div>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="{% trans 'Send' %}"/>
+            </div>
+        </fieldset>
+	</form>
+    {% if logs %}
+        <div>
+            <h2>Some translations has errors</h2>
+            {% for log in logs %}
+                <p>{{ log|safe }}</p>
+            {% endfor %}
+        </div>
+    {% elif success %}
+        <div>
+            <h2>Translations imported successfully</h2>
+        </div>
+    {% endif %}
+
+{% endblock %}

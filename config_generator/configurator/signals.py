@@ -22,6 +22,7 @@ def create_resources_directory(sender, instance, **kwargs):
     # Creating default resources folders
 
     if not os.path.exists(icons_path):
+
         shutil.copytree(settings.DEFAULT_ICONS_DIRECTORY, icons_path)
 
     if not os.path.exists(masks_path):

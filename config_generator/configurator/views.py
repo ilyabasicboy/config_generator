@@ -74,7 +74,7 @@ def create_app(request):
     form = WhiteLabelForm(request.POST, request.FILES, instance=WhiteLabel(user=request.user))
     if form.is_valid():
         form.save()
-
+        return HttpResponseRedirect("/")
     context = {
         'form': form,
         'success': form.is_valid(),

@@ -5,8 +5,6 @@ from config_generator.configurator.fields import CustomArrayField
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 import os
-import zipfile
-from io import BytesIO
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 
@@ -86,8 +84,22 @@ class WhiteLabel(models.Model):
 class WhiteLabelConfig(models.Model):
 
     class Meta:
-        verbose_name = u"конфигурация клиента"
-        verbose_name_plural = u"конфигурации клиента"
+        verbose_name = u"Whitelabel config"
+        verbose_name_plural = u"Whitelabel configs"
+
+    bundle_id = models.CharField(
+        verbose_name=u'id приложения в appstore',
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    push_bundle_id = models.CharField(
+        verbose_name=u'id пуш экстеншена в appstore',
+        max_length=255,
+        blank=True,
+        null=True
+    )
 
     onboarding_subtitle_text = models.CharField(
         verbose_name=u'текст на стартовом экране онбординга под логотипом и названием клиента',
