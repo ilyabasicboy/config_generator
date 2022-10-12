@@ -7,6 +7,7 @@ from django.forms.models import model_to_dict
 import os
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 
 class WhiteLabel(models.Model):
@@ -19,6 +20,12 @@ class WhiteLabel(models.Model):
         verbose_name=u'название приложения',
         max_length=255,
         unique=True
+    )
+
+    slug = models.SlugField(
+        verbose_name=_('Slug'),
+        max_length=255,
+        unique=True,
     )
 
     icons = models.FileField(

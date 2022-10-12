@@ -101,21 +101,19 @@ def create_config(request):
 
 
 def get_config(request):
-
-    if 'project' in request.GET:
+    if 'app' in request.GET:
         try:
-            return WhiteLabel.objects.get(title=request.GET.get('project')).get_config()
+            return WhiteLabel.objects.get(slug=request.GET.get('app')).get_config()
         except WhiteLabel.DoesNotExist:
             raise Http404("WhiteLabel does not exist")
     else:
         raise Http404
 
 
-def get_resources(request):
-
-    if 'project' in request.GET:
+def get_resources(request, app_slug):
+    if 'app' in request.GET:
         try:
-            return WhiteLabel.objects.get(title=request.GET.get('project')).get_resources()
+            return WhiteLabel.objects.get(slug=request.GET.get('app')).get_resources()
         except WhiteLabel.DoesNotExist:
             raise Http404("WhiteLabel does not exist")
     else:

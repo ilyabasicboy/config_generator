@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('admin/', admin.site.urls),
     url(r'^', include('config_generator.configurator.urls')),
+    url(r'^', include('config_generator.translations.urls')),
 ]

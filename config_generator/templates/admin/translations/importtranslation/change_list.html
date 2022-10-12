@@ -47,7 +47,7 @@
         <div>
             <h2>Some translations has errors</h2>
             {% for log in logs %}
-                <p>{{ log|safe }}</p>
+                <li>{{ log }}</li>
             {% endfor %}
         </div>
     {% elif success %}
