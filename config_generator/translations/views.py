@@ -5,6 +5,7 @@ from django.shortcuts import render
 from config_generator.translations.utils import get_keys_from_translation
 from django.db.utils import IntegrityError
 from django.http import Http404, JsonResponse
+from django.core.exceptions import PermissionDenied
 
 
 def import_translation(self, request):
@@ -67,3 +68,16 @@ def get_translations(request, lang):
             raise Exception('WhiteLabel %s has no configuration' % object.title)
     else:
         raise Http404
+
+
+def change_keys(request):
+    language_id = request.GET.get('language')
+    print(language_id)
+    if language_id:
+        language = Language.objects.filter(id=language_id).first()
+        keys = language.key_set.all()
+        context = {
+            'keys': keys
+        }
+        return render(request, 'admin/translations/importtranslation/translation-key-options.html', context)
+    return PermissionDenied

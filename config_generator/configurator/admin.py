@@ -1,10 +1,9 @@
 from django.contrib import admin
 from config_generator.configurator.models import WhiteLabel, WhiteLabelConfig
-from config_generator.translations.models import CustomTranslation
+from config_generator.translations.admin import CustomTranslationInline
 
 
-class CustomTranslationInline(admin.TabularInline):
-    model = CustomTranslation
+
 
 
 @admin.register(WhiteLabelConfig)
